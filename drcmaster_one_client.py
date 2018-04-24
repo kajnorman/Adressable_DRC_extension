@@ -6,6 +6,12 @@ def readresponse():
         ser.readinto(b)  #beware of timing issues here
         print(b)
 
+def readbinaryresponse():
+        b = bytearray(b"                   ");
+        ser.readinto(b)  #beware of timing issues here
+        print(b[0]*256 + b[1]   )
+        #print(b[1])
+
 #setup serial connection
 ser = serial.Serial('/dev/ttyACM0',115200,timeout=0.5)  # open serial port USB
 #ser = serial.Serial('/dev/ttyAMA0',115200,timeout=0.5)  # open serial port on gpio
@@ -46,13 +52,17 @@ print("Blinking pin8 status  ctrl-c to terminate  :-) ")
 while True:
 	ser.write(':'.encode('ascii'))
 	ser.write('y'.encode('ascii'))
-        ser.write('1'.encode('ascii'))   #set pin 8 high
-        ser.write(b"\x08")
-        sleep(0.2)
+	ser.write('1'.encode('ascii'))   #set pin 8 high
+	ser.write(b"\x08")
+	sleep(0.2)
 	ser.write(':'.encode('ascii'))
 	ser.write('y'.encode('ascii'))
-        ser.write('0'.encode('ascii'))   #set pin 8 low
-        ser.write(b"\x08")
-        sleep(0.2)
-
+	ser.write('0'.encode('ascii'))   #set pin 8 low
+	ser.write(b"\x08")
+	sleep(0.2)
+	ser.write(':'.encode('ascii'))
+	ser.write('y'.encode('ascii'))
+	ser.write('a'.encode('ascii'))   #read analog
+	ser.write(b"\x05")		 #input 5
+	readbinaryresponse()
 
