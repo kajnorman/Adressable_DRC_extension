@@ -44,7 +44,7 @@ Servo pan,tilt;  // create servo object to control a servo
 
 void setup ()
 {
-  int pos ;
+
   Serial.begin (115200) ;
   Serial.println ("DRC Arduino 1.0") ;
   pan.attach(2);  // attaches the servo on pin 2 to the servo object
@@ -63,6 +63,7 @@ void loop ()
 {
   unsigned int pin ;
   unsigned int aVal, dVal ;
+  int pos ;
   for (;;)
   {
     if (Serial.available () > 0)
@@ -73,7 +74,6 @@ void loop ()
           Serial.write (CMD_PING) ;
           continue ;
 
-//CMD_SERVO_PIN_2
 
         case CMD_SERVO_PIN_2: //pan
           pos  = myGetchar () ;
@@ -89,12 +89,7 @@ void loop ()
           continue ;
 
 
-//        case CMD_PWM_VAL_PIN:
- //         pin  = myGetchar () ;
-  //        dVal = myGetchar () ;
-   //       if ((pin >= MIN_DPIN) && (pin <= MAX_DPIN))
-    //        analogWrite (pin, dVal) ;
-     //     continue ;
+
       }
     }
   }
