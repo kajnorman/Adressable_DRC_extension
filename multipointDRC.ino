@@ -1,5 +1,9 @@
 /*
-  Adressable extension of the DRC protocol.
+  Adressable extension of the DRC protocol.(by Kaj Norman Nielsen knn@eaaa.dk)
+  (Originally Copyright (c) 2012 Gordon Henderson
+  Full details at:
+  http://projects.drogon.net/drogon-remote-control/drc-protocol-arduino/
+  )
   packet:
   +---+------+-------+---------+
   |':'|Addres|command|parameter|
@@ -7,15 +11,8 @@
   Address :
   The hard-coded number of the actual arduino (coded in the program)
   ( 0-255  or   0x00-0xFF )
-  drcAduino:
-  Arduino code to implement DRC - The Drogon Remote Control.
-  Allow another device talking to us over the serial port to control the
-  IO pins.
-  Copyright (c) 2012 Gordon Henderson
-  Full details at:
-  http://projects.drogon.net/drogon-remote-control/drc-protocol-arduino/
   commands:
-  @: 0x40 Ping          Send back #: 0x23
+  @: 0x40 Ping          Send back #: 0x40
   0: 0x30 0xNN  Set Pin NN OFF
   1: 0x31 0xNN  Set Pin NN ON
   i: 0x69 0xNN  Set Pin NN as Input
@@ -28,10 +25,7 @@
   A servo is set on a fixed pin number 7
 *************************************************************************
 ********
-  This file is part of drcAduino:
-  Drogon Remote Control for Arduino
-  http://projects.drogon.net/drogon-remote-control/
-  drcAduino is free software: you can redistribute it and/or modify
+  This is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
@@ -75,7 +69,7 @@ void setup ()
 {
   int pin ;
   Serial.begin (115200) ;
-  Serial.println ("DRC Arduino 1.0") ;
+  Serial.println ("Addr DRC Arduino 1.0") ;
   pinMode (13, OUTPUT) ;
   digitalWrite (13, HIGH) ;
   for (pin = 2 ; pin < 13 ; ++pin)
