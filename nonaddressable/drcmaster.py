@@ -15,24 +15,21 @@ sleep(3)
 readresponse()
 
 
-ser.write('@'.encode('ascii'))
+ser.write(b'@')
 readresponse()
 
-ser.write('r'.encode('ascii')) #reading the status of pin 7
-ser.write(b"\x07")
+
+ser.write(b"r\x07")   #reading the status of pin 7
 print("pin7 status")
 readresponse()
 
-ser.write('o'.encode('ascii'))  #set pin 7 as output
-ser.write(b"\x07")
+ser.write(b"o\x07")     #set pin 7 as output
 
 print("Blinking pin7 status  ctrl-c to terminate  :-) ")
 while True:
-        ser.write('1'.encode('ascii'))   #set pin 7 high
-        ser.write(b"\x07")
+        ser.write(b"1\x07")     #set pin 7 high
         sleep(0.2)
-        ser.write('0'.encode('ascii'))   #set pin 7 high
-        ser.write(b"\x07")
+        ser.write(b"0\x07")   #set pin 7 low
         sleep(0.2)
 
 
