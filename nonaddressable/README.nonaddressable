@@ -2,3 +2,5 @@ This is the allmost original DRC.ino
 (a minor error fixed)
 
 And there is  python testprogram to work as a master
+
+The other python program is a prototype of  a set of functions that will enable controll of a robotcar connected to an arduino !
